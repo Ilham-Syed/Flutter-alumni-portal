@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "690426975881",
+    "project_id": "signin-alumni-portal",
+    "storage_bucket": "signin-alumni-portal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:690426975881:android:377fa458afca92c53f9858",
+        "android_client_info": {
+          "package_name": "com.example.flutter_prjcts"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "690426975881-g6b3l99rmim4tomfqitlcr1i8ipvu2sa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkHDLTJ429XPQAWyYXRaDSJ2S36OOJDdg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "690426975881-g6b3l99rmim4tomfqitlcr1i8ipvu2sa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
