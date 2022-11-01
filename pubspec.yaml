@@ -40,6 +40,8 @@ dependencies:
   firebase_auth: ^4.0.2
   # add this line to your dependencies
   fluttertoast: ^8.1.1
+  animated_text_kit: ^4.2.2
+  google_nav_bar: ^5.0.6
 
 dev_dependencies:
   flutter_test:
@@ -79,8 +81,13 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
+fonts:
+  - family: Pacifico
+    fonts:
+      - assets:assets/fonts/Pacifico-Regular.ttf
+  - family: Source Sans Pro
+    fonts:
+      - assets:assets/fonts/SourceSansPro-Regular.ttf
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf

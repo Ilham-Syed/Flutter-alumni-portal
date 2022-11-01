@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_prjcts/reusablewidgets/reusable_widgets.dart';
 import 'package:flutter_prjcts/screens/home_screen.dart';
 import 'package:flutter_prjcts/utils/colors_util.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -16,6 +17,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController _emailTextController=TextEditingController();
   TextEditingController _passwordTextController=TextEditingController();
   TextEditingController _usernameTextController=TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,6 +66,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               const SizedBox(
                 height: 20,
               ),
+
               SigninSignupButtons(context, false, (){
                 FirebaseAuth.instance.createUserWithEmailAndPassword(email: _emailTextController.text,
                     password: _passwordTextController.text).then((value) {
@@ -79,5 +82,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
       ),
     );
+
   }
 }
