@@ -22,13 +22,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: <Widget>[
+        /*actions: <Widget>[
           IconButton(
               onPressed: (){},
               icon: Icon(Icons.message),
           ),
 
-    ],
+    ],*/
 
 
         centerTitle: false,
@@ -240,8 +240,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   text: 'Notifications',
                 ),
                 GButton(
-                  icon: Icons.account_circle,
-                  text: 'Profile',
+                  icon: Icons.message,
+                  text: 'Chats',
                 ),
               ],
             ),

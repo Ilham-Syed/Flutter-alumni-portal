@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_prjcts/Profile_page_screens/preferred_domain.dart';
 
 import 'package:flutter_prjcts/screens/maindrawer.dart';
 import 'package:flutter_prjcts/screens/signin_screen.dart';
@@ -90,6 +91,9 @@ class _ProfilePageState extends State<ProfilePage> {
                         fontSize: 15,
                       ),
                     ),
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (Context)=>preferred_domain()));
+                    },
                   ),
                 ),
                 Card(
