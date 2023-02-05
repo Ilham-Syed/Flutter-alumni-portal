@@ -17,8 +17,17 @@ class _GalleryState extends State<Gallery> {
         centerTitle: false,
         title: const Text("Gallery",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
       ),
-      body: Container(
-
+      body: GridView.count(
+          crossAxisCount: 3,
+        children: List.generate(9, (index) {
+          return Container(
+            padding: EdgeInsets.all(8.0),
+            child: Image.network(
+              'https://picsum.photos/200/300?image=$index',
+              fit: BoxFit.cover,
+            ),
+          );
+        }),
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_prjcts/screens/gallery.dart';
 import 'package:flutter_prjcts/screens/home_screen.dart';
 import 'package:flutter_prjcts/screens/profilepage.dart';
 import 'package:flutter_prjcts/utils/colors_util.dart';
@@ -156,7 +157,9 @@ class MainDrawer extends StatelessWidget {
                 color: Colors.black,
               ),
             ),
-            onTap: null,
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Gallery()));
+            },
           ),
           const Divider(color: Colors.black54,height: 5,),
           ListTile(

@@ -47,23 +47,7 @@ class _preferred_domainState extends State<preferred_domain> {
             SizedBox(
               height: 30,
             ),
-            /*DropdownButtonFormField(
-              value: _selectedDomain,
-              items: _domains.map((domain) {
-                return DropdownMenuItem(
-                  value: domain,
-                  child: Text(domain),
-                );
-              }).toList(),
-              onChanged: (value) {
-                setState(() {
-                  _selectedDomain = value.toString();
-                });
-              },
-              decoration: InputDecoration(
-                labelText: "Preferred Domain",
-              ),
-            ),*/
+
             TextField(
               onChanged: (value){
                 domain=value;
