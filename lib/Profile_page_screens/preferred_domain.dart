@@ -15,8 +15,8 @@ class _preferred_domainState extends State<preferred_domain> {
   final _domainController = TextEditingController();
   CollectionReference users =
       FirebaseFirestore.instance.collection('userDomainPref');
-  String name="";
-  String domain="";
+  String name = "";
+  String domain = "";
   /*final List<String> _domains = ['Web development', 'App development', 'Machine learning','Cryptography','Hardware','Others'];
   String _selectedDomain='';*/
   @override
@@ -36,9 +36,22 @@ class _preferred_domainState extends State<preferred_domain> {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: <Widget>[
+            Container(
+              height: 200,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                image: DecorationImage(
+                    image: NetworkImage(
+                        "https://img.freepik.com/free-photo/rpa-concept-with-blurry-hand-touching-screen_23-2149311914.jpg?w=996&t=st=1675792374~exp=1675792974~hmac=13bbc9fd4870eeccf91a8b54aca99ba4530db4f56fbbcbd98fd571fbf034ef8a"),
+                    fit: BoxFit.cover,),
+              ),
+            ),
+            SizedBox(
+              height: 50,
+            ),
             TextField(
-              onChanged: (value){
-                name=value;
+              onChanged: (value) {
+                name = value;
               },
               controller: _nameController,
               decoration: InputDecoration(
@@ -47,10 +60,9 @@ class _preferred_domainState extends State<preferred_domain> {
             SizedBox(
               height: 30,
             ),
-
             TextField(
-              onChanged: (value){
-                domain=value;
+              onChanged: (value) {
+                domain = value;
               },
               controller: _domainController,
               decoration: InputDecoration(
@@ -61,17 +73,21 @@ class _preferred_domainState extends State<preferred_domain> {
                 onPressed: () async {
                   await users.add({'Name': name, 'Domain': domain}).then(
                       (value) => print('User Added'));
-                  showDialog(context: context,
-                      builder: (BuildContext context){
-                    return AlertDialog(
-                      title: Text('Updated!!'),
-                      content: Text("Your data has been succesfully added to the database"),
-                      actions: [
-                        TextButton(onPressed: (){
-                          Navigator.of(context).pop();
-                        }, child: Text('OK'))
-                      ],
-                    );
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text('Updated!!'),
+                          content: Text(
+                              "Your data has been succesfully added to the database"),
+                          actions: [
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text('OK'))
+                          ],
+                        );
                       });
                   _nameController.clear();
                   _domainController.clear();

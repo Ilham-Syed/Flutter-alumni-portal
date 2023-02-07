@@ -72,88 +72,90 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(
                       height: 50,
                     ),
-                    Row(
-                      children: <Widget>[
-                        SizedBox(
-                          width: 35,
-                        ),
-                        Container(
-                          width: 120,
-                          height: 120,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black,width: 2),
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 15,
-                              )
-                            ]
+                    SingleChildScrollView(
+                      child: Row(
+                        children: <Widget>[
+                          SizedBox(
+                            width: 15,
                           ),
-                          child: Column(
-                            children: <Widget>[
-                              Container(
-                                width: 80,
-                                height: 70,
-                                margin: EdgeInsets.only(top: 10),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                          Container(
+                            width: 120,
+                            height: 120,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black,width: 2),
+                              borderRadius: BorderRadius.all(Radius.circular(15)),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 15,
+                                )
+                              ]
+                            ),
+                            child: Column(
+                              children: <Widget>[
+                                Container(
+                                  width: 80,
+                                  height: 70,
+                                  margin: EdgeInsets.only(top: 10),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(Radius.circular(15)),
 
-                                  image: DecorationImage(
-                                    image: NetworkImage("https://cdn.pixabay.com/photo/2016/04/25/07/49/man-1351346__340.png"),
-                                    fit: BoxFit.fitHeight,
+                                    image: DecorationImage(
+                                      image: NetworkImage("https://cdn.pixabay.com/photo/2016/04/25/07/49/man-1351346__340.png"),
+                                      fit: BoxFit.fitHeight,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Text("Alumni",style: TextStyle(fontSize: 15),),
-                            ],
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text("Alumni",style: TextStyle(fontSize: 15),),
+                              ],
+                            ),
                           ),
-                        ),
-                        /*SizedBox(
-                          width: 85,
-                        ),*/
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text("   Let's\nConnect",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: Colors.green),),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Container(
-                          width: 120,
-                          height: 120,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            border: Border.all(color: Colors.black,width: 2),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 15,
-                              )
-                            ]
+                          /*SizedBox(
+                            width: 85,
+                          ),*/
+                          SizedBox(
+                            width: 10,
                           ),
-                          child: Column(
-                            children: <Widget>[
-                              Container(
-                                width: 80,
-                                height: 80,
-                                margin: EdgeInsets.only(top: 10),
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image:NetworkImage("https://static.vecteezy.com/system/resources/thumbnails/005/322/429/small_2x/happy-university-students-free-vector.jpg"),
+                          Text("   Let's\nConnect",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: Colors.green),),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Container(
+                            width: 120,
+                            height: 120,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(15)),
+                              border: Border.all(color: Colors.black,width: 2),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 15,
+                                )
+                              ]
+                            ),
+                            child: Column(
+                              children: <Widget>[
+                                Container(
+                                  width: 80,
+                                  height: 80,
+                                  margin: EdgeInsets.only(top: 10),
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image:NetworkImage("https://static.vecteezy.com/system/resources/thumbnails/005/322/429/small_2x/happy-university-students-free-vector.jpg"),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Text("Student",style: TextStyle(
-                                fontSize: 15,
-                              ),)
-                            ],
-                          ),
-                        )
-                      ],
+                                Text("Student",style: TextStyle(
+                                  fontSize: 15,
+                                ),)
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                     SizedBox(
                       height: 30,

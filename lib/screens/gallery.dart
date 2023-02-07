@@ -18,7 +18,7 @@ class _GalleryState extends State<Gallery> {
         title: const Text("Gallery",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
       ),
       body: GridView.count(
-          crossAxisCount: 3,
+          crossAxisCount: 2,
         children: List.generate(9, (index) {
           return Container(
             padding: EdgeInsets.all(8.0),
