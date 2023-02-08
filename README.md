@@ -1,6 +1,5 @@
-# flutter_prjcts
-
-A new Flutter project.
+# flutter_prjct
+This is a project on Alumni tracking system. It is designed using flutter from the front end and it uses firebase for the backend. Currently the app is in a develpment stage as the backend is not completly designed.
 
 ## Getting Started
 
