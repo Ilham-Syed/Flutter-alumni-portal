@@ -34,66 +34,68 @@ class _preferred_domainState extends State<preferred_domain> {
       drawer: MainDrawer(),
       body: Container(
         padding: const EdgeInsets.all(20),
-        child: Column(
-          children: <Widget>[
-            Container(
-              height: 200,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                image: DecorationImage(
-                    image: NetworkImage(
-                        "https://img.freepik.com/free-photo/rpa-concept-with-blurry-hand-touching-screen_23-2149311914.jpg?w=996&t=st=1675792374~exp=1675792974~hmac=13bbc9fd4870eeccf91a8b54aca99ba4530db4f56fbbcbd98fd571fbf034ef8a"),
-                    fit: BoxFit.cover,),
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Container(
+                height: 200,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  image: DecorationImage(
+                      image: NetworkImage(
+                          "https://img.freepik.com/free-photo/rpa-concept-with-blurry-hand-touching-screen_23-2149311914.jpg?w=996&t=st=1675792374~exp=1675792974~hmac=13bbc9fd4870eeccf91a8b54aca99ba4530db4f56fbbcbd98fd571fbf034ef8a"),
+                      fit: BoxFit.cover,),
+                ),
               ),
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            TextField(
-              onChanged: (value) {
-                name = value;
-              },
-              controller: _nameController,
-              decoration: InputDecoration(
-                  labelText: "Enter your Name", border: OutlineInputBorder()),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            TextField(
-              onChanged: (value) {
-                domain = value;
-              },
-              controller: _domainController,
-              decoration: InputDecoration(
-                  labelText: "Preferred Domain", border: OutlineInputBorder()),
-            ),
-            SizedBox(height: 40),
-            ElevatedButton(
-                onPressed: () async {
-                  await users.add({'Name': name, 'Domain': domain}).then(
-                      (value) => print('User Added'));
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: Text('Updated!!'),
-                          content: Text(
-                              "Your data has been succesfully added to the database"),
-                          actions: [
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                child: Text('OK'))
-                          ],
-                        );
-                      });
-                  _nameController.clear();
-                  _domainController.clear();
+              SizedBox(
+                height: 50,
+              ),
+              TextField(
+                onChanged: (value) {
+                  name = value;
                 },
-                child: Text("Submit"))
-          ],
+                controller: _nameController,
+                decoration: InputDecoration(
+                    labelText: "Enter your Name", border: OutlineInputBorder()),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              TextField(
+                onChanged: (value) {
+                  domain = value;
+                },
+                controller: _domainController,
+                decoration: InputDecoration(
+                    labelText: "Preferred Domain", border: OutlineInputBorder()),
+              ),
+              SizedBox(height: 40),
+              ElevatedButton(
+                  onPressed: () async {
+                    await users.add({'Name': name, 'Domain': domain}).then(
+                        (value) => print('User Added'));
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('Updated!!'),
+                            content: Text(
+                                "Your data has been succesfully added to the database"),
+                            actions: [
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text('OK'))
+                            ],
+                          );
+                        });
+                    _nameController.clear();
+                    _domainController.clear();
+                  },
+                  child: Text("Submit"))
+            ],
+          ),
         ),
       ),
     );

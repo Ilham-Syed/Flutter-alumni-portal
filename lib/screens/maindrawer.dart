@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_prjcts/Blogs/blog_homepage.dart';
+import 'package:flutter_prjcts/Profile_page_screens/contact_us.dart';
+import 'package:flutter_prjcts/Profile_page_screens/preferred_domain.dart';
 import 'package:flutter_prjcts/screens/gallery.dart';
 import 'package:flutter_prjcts/screens/home_screen.dart';
 import 'package:flutter_prjcts/screens/profilepage.dart';
@@ -120,7 +123,6 @@ class MainDrawer extends StatelessWidget {
               ),
               onTap: null,
             ),
-
             const Divider(color: Colors.black54,height: 10,),
             ListTile(
               leading: Icon(Icons.book_outlined,color: Colors.black,),
@@ -132,10 +134,12 @@ class MainDrawer extends StatelessWidget {
                   color: Colors.black,
                 ),
               ),
-              onTap: null,
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) =>BlogHPage()));
+              }
             ),
             const Divider(color: Colors.black54,height: 10,),
-            ListTile(
+           /* ListTile(
               leading: Icon(Icons.person_pin_circle_rounded,color: Colors.black,),
               //tileColor: hexStringToColor("#d4c4c3") ,
               title: Text(
@@ -147,7 +151,7 @@ class MainDrawer extends StatelessWidget {
               ),
               onTap: null,
             ),
-            const Divider(color: Colors.black54,height: 10,),
+            const Divider(color: Colors.black54,height: 10,),*/
             ListTile(
               leading: Icon(Icons.photo_camera,color: Colors.black,),
               //tileColor: hexStringToColor("#787171") ,
@@ -164,18 +168,20 @@ class MainDrawer extends StatelessWidget {
             ),
             const Divider(color: Colors.black54,height: 5,),
             ListTile(
-              leading: Icon(Icons.info_outline,color: Colors.black,),
+              leading: Icon(Icons.phone,color: Colors.black,),
               //tileColor: hexStringToColor("#d4c4c3") ,
               title: Text(
-                "About",
+                "Contact Us",
                 style: TextStyle(
                   fontSize: 17,
                   color: Colors.black,
                 ),
               ),
-              onTap: null,
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>ContactUs()));
+              },
             ),
-
+            const Divider(color: Colors.black54,height: 5,),
             ListTile(
               leading: Icon(Icons.room_preferences,color: Colors.black,),
               //tileColor: hexStringToColor("#d4c4c3") ,
@@ -186,7 +192,9 @@ class MainDrawer extends StatelessWidget {
                   color: Colors.black,
                 ),
               ),
-              onTap: null,
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => preferred_domain()));
+              }
             ),
           ],
         ),

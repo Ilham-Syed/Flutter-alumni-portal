@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_prjcts/Profile_page_screens/chatPage.dart';
 
 import 'package:flutter_prjcts/screens/maindrawer.dart';
 import 'package:flutter_prjcts/screens/signin_screen.dart';
@@ -31,7 +32,11 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
 
     ],*/
-
+        actions: [
+          IconButton(onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => ChatPage()));
+          }, icon: Icon(Icons.message_outlined))
+        ],
         centerTitle: false,
         title: const Text(
           "Welcome",
@@ -354,6 +359,9 @@ class _HomeScreenState extends State<HomeScreen> {
               GButton(
                 icon: Icons.message,
                 text: 'Chats',
+                /*onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => ChatPage()));
+                },*/
               ),
             ],
           ),

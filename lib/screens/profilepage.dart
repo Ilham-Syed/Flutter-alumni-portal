@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_prjcts/Profile_page_screens/contact_us.dart';
 import 'package:flutter_prjcts/Profile_page_screens/preferred_domain.dart';
 
 import 'package:flutter_prjcts/screens/maindrawer.dart';
@@ -51,15 +52,18 @@ class _ProfilePageState extends State<ProfilePage> {
                       color: Colors.teal,
                     ),
                     title: Text(
-                      "Contact details",
+                      "Get In Touch",
                       style: TextStyle(
                         color: Colors.teal,
                         fontSize: 15,
                       ),
                     ),
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>ContactUs()));
+                    },
                   ),
                 ),
-                Card(
+                /*Card(
                   color: Colors.white60,
                   margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
                   child: ListTile(
@@ -75,7 +79,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                   ),
-                ),
+                ),*/
                 Card(
                   color: Colors.white60,
                   margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
