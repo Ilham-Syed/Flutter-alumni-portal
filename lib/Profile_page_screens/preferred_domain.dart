@@ -56,7 +56,7 @@ class _preferred_domainState extends State<preferred_domain> {
                 },
                 controller: _nameController,
                 decoration: InputDecoration(
-                    labelText: "Enter your Name", border: OutlineInputBorder()),
+                    labelText: "Are you here to connect only ? (Yes/No)", border: OutlineInputBorder()),
               ),
               SizedBox(
                 height: 30,
@@ -67,7 +67,7 @@ class _preferred_domainState extends State<preferred_domain> {
                 },
                 controller: _domainController,
                 decoration: InputDecoration(
-                    labelText: "Preferred Domain", border: OutlineInputBorder()),
+                    labelText: "Please type a domain in which you are willing to help eg: Hard skills - Data Analyst, Software development, etc", border: OutlineInputBorder()),
               ),
               SizedBox(height: 40),
               ElevatedButton(

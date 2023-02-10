@@ -156,7 +156,7 @@ class MainDrawer extends StatelessWidget {
               leading: Icon(Icons.photo_camera,color: Colors.black,),
               //tileColor: hexStringToColor("#787171") ,
               title: Text(
-                "Gallery",
+                "Reunion",
                 style: TextStyle(
                   fontSize: 17,
                   color: Colors.black,
