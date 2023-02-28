@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_prjcts/screens/home_screen.dart';
 import 'package:flutter_prjcts/screens/signup_screen.dart';
@@ -16,6 +17,9 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   TextEditingController _emailTextController=TextEditingController();
   TextEditingController _passwordTextController=TextEditingController();
+  final formKey=GlobalKey<FormState>();
+  String email="";
+  String password="";
   @override
   Widget build(BuildContext context) {
     return Scaffold
@@ -44,7 +48,7 @@ class _SignInScreenState extends State<SignInScreen> {
               .of(context)
               .size
               .height * 0.1, 20, 0),
-          child: Column(
+          /*child: Column(
             children: <Widget>[
               logoWidget("assets/images/1vesit.png"),
               SizedBox(
@@ -89,6 +93,123 @@ class _SignInScreenState extends State<SignInScreen> {
               }),
               signUpOption()
             ],
+          ),*/
+          child: Form(
+              key: formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(child: Image.asset("assets/images/1vesit.png"),height: 280,),
+                  const SizedBox(height: 20,),
+                  const Text("V E S I T",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 35,color: Colors.white,decorationThickness: 1.5),),
+                  const Text("Alumni Portal",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 35,color: Colors.white,decorationThickness: 1.5),),
+                  const SizedBox(height: 20,),
+                  TextFormField(
+                    autocorrect: true,
+                    cursorColor: Colors.white,
+                    style: TextStyle(color: Colors.white.withOpacity(0.9)),
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.email,
+                        color: Colors.white70,
+                      ),
+                      labelText: "Email",
+                      filled: true,
+                      labelStyle: TextStyle(color: Colors.white.withOpacity(0.9)),
+                      floatingLabelBehavior: FloatingLabelBehavior.never,
+                      fillColor: Colors.white.withOpacity(0.3),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: const BorderSide(width: 0,style: BorderStyle.none),
+                      ),
+
+                    ),
+
+                    onChanged: (val){
+                      setState(() {
+                        email=val;
+                        print(email);
+                      });
+                    },
+                    validator: (val){
+                      return RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(val!)?null:"Please enter a valid email";
+                    },
+                  ),
+                  const SizedBox(height: 20,),
+                  TextFormField(
+                    obscureText: true,
+                    autocorrect: false,
+                    cursorColor: Colors.white,
+                    style: TextStyle(color: Colors.white.withOpacity(0.9)),
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.lock,
+                        color: Colors.white70,
+                      ),
+                      labelText: "Password",
+                      filled: true,
+                      labelStyle: TextStyle(color: Colors.white.withOpacity(0.9)),
+                      floatingLabelBehavior: FloatingLabelBehavior.never,
+                      fillColor: Colors.white.withOpacity(0.3),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: const BorderSide(width: 0,style: BorderStyle.none),
+                      ),
+
+                    ),
+                    validator: (val){
+                      if(val!.length<6){
+                        return "Password must be atleast 6 characters";
+                      }else{
+                        return null;
+                      }
+                    },
+                    onChanged: (val){
+                      setState(() {
+                        password=val;
+                      });
+                    },
+                  ),
+                  SizedBox(height: 20,),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 40,
+                    child: ElevatedButton(
+
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                        ),
+                        onPressed: (){
+                          login();
+                        },
+                        child: Text("Sign In",style: TextStyle(color: Colors.black,fontSize: 16),)
+                    ),
+                  ),
+                  const SizedBox(height: 20,),
+                  Text.rich(
+                      TextSpan(
+                        text: "Dont have an account?  ",
+                        style: const TextStyle(color: Colors.black,fontSize: 14),
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: "Register Here",
+                              style: const TextStyle(
+                                  color: Colors.black,fontSize: 14,decoration: TextDecoration.underline,fontWeight: FontWeight.w700
+                              ),
+                              recognizer: TapGestureRecognizer()..onTap =(){
+                                nextScreenReplace(context, const SignUpScreen());
+                              }
+                          ),
+                        ],
+                      )
+                  )
+                ],
+              ),
           ),
         ),
       ),
@@ -115,6 +236,7 @@ class _SignInScreenState extends State<SignInScreen> {
         ],
       );
     }
+    login(){}
   }
 
 
