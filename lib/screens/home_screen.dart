@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_prjcts/Profile_page_screens/chatPage.dart';
+import 'package:flutter_prjcts/chat_feature/chatPage.dart';
 
 import 'package:flutter_prjcts/screens/maindrawer.dart';
 import 'package:flutter_prjcts/screens/signin_screen.dart';
