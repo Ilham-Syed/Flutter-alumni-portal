@@ -1,7 +1,13 @@
+/*
+import 'dart:html';
+*/
+import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_prjcts/Blogs/blog_homepage.dart';
+import 'package:flutter_prjcts/services/crud.dart';
+import 'package:image_picker/image_picker.dart';
 
 
 class CreateBlog extends StatefulWidget {
@@ -12,79 +18,94 @@ class CreateBlog extends StatefulWidget {
 }
 
 class _CreateBlogState extends State<CreateBlog> {
-  final _titleController=TextEditingController();
-  final _descriptionController=TextEditingController();
-  String title="";
-  String description="";
-  CollectionReference bloguser=FirebaseFirestore.instance.collection('blogpost');
+ String authorName="";
+ String title="";
+ String desc="";
+ CrudMethods crudMethods=new CrudMethods();
+var selectedImage;
+ Future getImage() async{
+   XFile? pickedImage=await ImagePicker().pickImage(source: ImageSource.gallery);
+   if(pickedImage!=null){
+     File imageFile=File(pickedImage.path);
+   }
+   setState(() {
+     selectedImage=pickedImage;
+   });
+ }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Create Blog",style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
+        title: Row(
+          children: <Widget>[
+            Text("Create",style: TextStyle(
+              fontSize: 22,
+            ),),
+            Text("Blog",style: TextStyle(
+                fontSize: 22,color: Colors.lightBlueAccent
+            ),)
+          ],),
+        backgroundColor: Colors.blueGrey,
+        elevation: 0.0,
+        actions: <Widget>[
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+              child: Icon(Icons.file_upload)),
+        ],
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(15),
-          child: Column(
-            children: <Widget>[
-              SizedBox(height: 30,),
+      body: Container(
+        child: Column(
+          children: <Widget>[
+            SizedBox(height: 10,),
+            GestureDetector(
+              onTap: (){
+                getImage();
+              },
+              child: selectedImage!=null?
               Container(
-                width: 400,
-                height: 200,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage("https://www.hostinger.es/tutoriales/wp-content/uploads/sites/7/2017/10/como-crear-un-blog.png"),
-                    fit: BoxFit.fill,
+
+                margin: EdgeInsets.symmetric(horizontal: 16),
+                height: 150,width: MediaQuery.of(context).size.width,
+                child: Image.file(File(selectedImage.path)),
+              ):
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 16),
+                height: 150,width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                color: Colors.grey,
+                borderRadius: BorderRadius.circular(6),
+              ),
+              child: Icon(Icons.add_a_photo),
+              ),
+            ),
+            SizedBox(height: 8,),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                children: <Widget>[
+                  TextField(
+                    decoration: InputDecoration(hintText: "Author Name"),
+                    onChanged: (val){
+                      authorName=val;
+                    },
                   ),
-                  border: Border.all(color: Colors.black,width: 1),
-                  borderRadius: BorderRadius.all(Radius.circular(10))
-                ),
+                  TextField(
+                    decoration: InputDecoration(hintText: "Title"),
+                    onChanged: (val){
+                      title=val;
+                    },
+                  ),
+                  TextField(
+                    decoration: InputDecoration(hintText: "Description"),
+                    onChanged: (val){
+                      desc=val;
+                    },
+                  ),
+                ],
               ),
-              SizedBox(height: 70,),
-              TextField(
-                onChanged: (value) {
-                  title= value;
-                },
-                controller: _titleController,
-                decoration: InputDecoration(
-                    labelText: "Enter the title of the blog.", border: OutlineInputBorder(),),
-              ),
-              SizedBox(height: 50,),
-              TextField(
-                onChanged: (value) {
-                  description= value;
-                },
-                controller: _descriptionController,
-                decoration: InputDecoration(
-                  labelText: "Description", border: OutlineInputBorder(),),
-              ),
-              SizedBox(height: 30,),
-              ElevatedButton(
-                  onPressed: () async {
-                    await bloguser.add({'title': title, 'description': description}).then(
-                            (value) => print('Data Added'));
-                    showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: Text('Updated!!'),
-                            content: Text(
-                                "Blog creation succesful"),
-                            actions: [
-                              TextButton(
-                                  onPressed: () {
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) =>BlogHPage()));
-                                  },
-                                  child: Text('OK'))
-                            ],
-                          );
-                        });
-                    _titleController.clear();
-                    _descriptionController.clear();
-                  },
-                  child: Text("Submit"))
-            ],
-          )
+            )
+          ],
+        ),
       ),
     );
   }
