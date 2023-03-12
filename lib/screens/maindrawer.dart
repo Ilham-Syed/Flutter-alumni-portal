@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_prjcts/Blogs/blog_homepage.dart';
 import 'package:flutter_prjcts/Profile_page_screens/contact_us.dart';
 import 'package:flutter_prjcts/Profile_page_screens/preferred_domain.dart';
+import 'package:flutter_prjcts/job_posting/jobHomePage.dart';
 import 'package:flutter_prjcts/screens/gallery.dart';
 import 'package:flutter_prjcts/screens/home_screen.dart';
 import 'package:flutter_prjcts/screens/profilepage.dart';
@@ -121,7 +122,9 @@ class MainDrawer extends StatelessWidget {
                   color: Colors.black,
                 ),
               ),
-              onTap: null,
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>JobHomePage()));
+              },
             ),
             const Divider(color: Colors.black54,height: 10,),
             ListTile(
