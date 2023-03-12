@@ -2,12 +2,14 @@
 import 'dart:html';
 */
 import 'dart:io';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_prjcts/Blogs/blog_homepage.dart';
 import 'package:flutter_prjcts/services/crud.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:random_string/random_string.dart';
 
 
 class CreateBlog extends StatefulWidget {
@@ -23,15 +25,41 @@ class _CreateBlogState extends State<CreateBlog> {
  String desc="";
  CrudMethods crudMethods=new CrudMethods();
 var selectedImage;
+bool _isLoading=false;
  Future getImage() async{
    XFile? pickedImage=await ImagePicker().pickImage(source: ImageSource.gallery);
    if(pickedImage!=null){
-     File imageFile=File(pickedImage.path);
+     setState(() {
+       selectedImage=File(pickedImage.path);
+     });
    }
-   setState(() {
-     selectedImage=pickedImage;
-   });
+
  }
+
+ uploadBlog() async{
+  if(selectedImage !=null){
+    setState(() {
+      _isLoading=true;
+    });
+    Reference firebaseStorageRef=FirebaseStorage.instance.ref().child("blogImages").child("${randomAlphaNumeric(9)}.jpg");
+    final UploadTask task=firebaseStorageRef.putFile(selectedImage);
+    var downloadUrl=await(await task).ref.getDownloadURL();
+    print("this is url $downloadUrl");
+    Map<String,String> blogMap={
+      "imgUrl":downloadUrl,
+      "authorName":authorName,
+      "title":title,
+      "desc":desc
+    };
+    crudMethods.addData(blogMap).then((result){
+      Navigator.pop(context);
+    });
+  }else{
+
+  }
+ }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,12 +76,20 @@ var selectedImage;
         backgroundColor: Colors.blueGrey,
         elevation: 0.0,
         actions: <Widget>[
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Icon(Icons.file_upload)),
+          GestureDetector(
+            onTap: (){
+              uploadBlog();
+            },
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Icon(Icons.file_upload)),
+          ),
         ],
       ),
-      body: Container(
+      body: _isLoading?Container(
+        alignment: Alignment.center,
+        child: CircularProgressIndicator(),
+      ):Container(
         child: Column(
           children: <Widget>[
             SizedBox(height: 10,),
@@ -63,10 +99,13 @@ var selectedImage;
               },
               child: selectedImage!=null?
               Container(
-
                 margin: EdgeInsets.symmetric(horizontal: 16),
                 height: 150,width: MediaQuery.of(context).size.width,
-                child: Image.file(File(selectedImage.path)),
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(6),
+                    child: Image.file(selectedImage,fit: BoxFit.cover,
+                    ),
+                ),
               ):
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 16),

@@ -6,4 +6,7 @@ class CrudMethods{
       print(e);
     });
   }
+  getData() async{
+    return await FirebaseFirestore.instance.collection("blogs").get();
+  }
 }
