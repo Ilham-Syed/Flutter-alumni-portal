@@ -100,7 +100,7 @@ bool _isLoading=false;
               child: selectedImage!=null?
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 16),
-                height: 150,width: MediaQuery.of(context).size.width,
+                height: 170,width: MediaQuery.of(context).size.width,
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(6),
                     child: Image.file(selectedImage,fit: BoxFit.cover,
@@ -109,7 +109,7 @@ bool _isLoading=false;
               ):
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 16),
-                height: 150,width: MediaQuery.of(context).size.width,
+                height: 170,width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 color: Colors.grey,
                 borderRadius: BorderRadius.circular(6),

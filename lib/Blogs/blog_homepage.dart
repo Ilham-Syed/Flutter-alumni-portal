@@ -15,11 +15,11 @@ class BlogHPage extends StatefulWidget {
 
 class _BlogHPageState extends State<BlogHPage> {
  CrudMethods crudMethods=new CrudMethods();
-  var blogsSnapshot;
+  var blogsStream;
  @override
  void initState() {
    crudMethods.getData().then((result) {
-     blogsSnapshot = result;
+     blogsStream = result;
      setState(() {});
    });
    super.initState();
@@ -33,9 +33,29 @@ class _BlogHPageState extends State<BlogHPage> {
  }*/
  Widget BlogsList(){
    return Container(
-     child: Column(
+     /*height: MediaQuery.of(context).size.height,*/
+     /*margin: EdgeInsets.only(bottom: 16),*/
+     child: blogsStream !=null ?Column(
        children: <Widget>[
-         blogsSnapshot !=null ? ListView.builder(
+         StreamBuilder<QuerySnapshot>(
+             stream: blogsStream,
+             builder: (context,snapshot){
+               return ListView.builder(
+                   padding: EdgeInsets.symmetric(horizontal: 16),
+                   itemCount: snapshot.data!.docs.length,
+                   shrinkWrap: true,
+                   itemBuilder:(context,index){
+                     return BlogsTile(
+                       imgUrl: snapshot.data!.docs[index].get('imgUrl'),
+                       title: snapshot.data!.docs[index].get('title'),
+                       description: snapshot.data!.docs[index].get('desc'),
+                       authorName: snapshot.data!.docs[index].get('authorName'),);
+                   }
+               );
+             }
+         )
+          /*ListView.builder(
+            padding: EdgeInsets.symmetric(horizontal: 16),
              itemCount: blogsSnapshot.docs.length,
              shrinkWrap: true,
              itemBuilder:(context,index){
@@ -45,11 +65,12 @@ class _BlogHPageState extends State<BlogHPage> {
                    description: blogsSnapshot.docs[index].get('desc'),
                    authorName: blogsSnapshot.docs[index].get('authorName'),);
              }
-         ):Container(
-           alignment: Alignment.center,
-           child: CircularProgressIndicator(),)
+         )*/
        ],
-     ),
+     ):Container(
+       height: MediaQuery.of(context).size.height,
+       alignment: Alignment.center,
+       child: CircularProgressIndicator(),)
    );
  }
  /*@override
@@ -104,23 +125,35 @@ class BlogsTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 150,
+      margin: EdgeInsets.symmetric(vertical: 10),
+      height: 170,
       child: Stack(children: <Widget>[
         ClipRRect(
           borderRadius: BorderRadius.circular(6),
-            child: Image.network(imgUrl)),
+            child: Image.network(
+              imgUrl,fit: BoxFit.cover,width: MediaQuery.of(context).size.width,
+            ),
+        ),
         Container(
-          height: 150,
+          height: 170,
           decoration: BoxDecoration(
             color: Colors.black45.withOpacity(0.3),
             borderRadius: BorderRadius.circular(6)
           ),
         ),
-        Container(child: Column(
+        Container(
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text(title),
-            Text(description),
-            Text(authorName),
+            Text(title,style: TextStyle(color: Colors.white,fontSize: 26,
+              fontWeight: FontWeight.w500
+            ),textAlign: TextAlign.center,),
+            SizedBox(height: 4,),
+            Text(description,style: TextStyle(fontSize: 17,color: Colors.white,fontWeight: FontWeight.w400),),
+            SizedBox(height: 4,),
+            Text("-"+authorName,style: TextStyle(fontSize: 17,color: Colors.white,fontWeight: FontWeight.w400),),
           ],
         ),)
       ],),
